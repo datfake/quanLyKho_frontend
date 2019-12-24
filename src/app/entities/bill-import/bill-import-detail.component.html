@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="billImport">
+            <h2><span jhiTranslate="quanlyWareHouseApp.billImport.detail.title">Bill Import</span> {{billImport.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="quanlyWareHouseApp.billImport.amount">Amount</span></dt>
+                <dd>
+                    <span>{{billImport.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="quanlyWareHouseApp.billImport.date">Date</span></dt>
+                <dd>
+                    <span>{{billImport.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="quanlyWareHouseApp.billImport.charge">Charge</span></dt>
+                <dd>
+                    <span>{{billImport.charge}}</span>
+                </dd>
+                <dt><span jhiTranslate="quanlyWareHouseApp.billImport.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="billImport.product">
+                        <a [routerLink]="['/product', billImport.product?.id, 'view']">{{billImport.product?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bill-import', billImport.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

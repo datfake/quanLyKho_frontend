@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="quanlyWareHouseApp.billExport.home.title">Bill Exports</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bill-export" [routerLink]="['/bill-export/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="quanlyWareHouseApp.billExport.home.createLabel">
+            Create a new Bill Export
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="billExports?.length === 0">
+        <span jhiTranslate="quanlyWareHouseApp.billExport.home.notFound">No billExports found</span>
+    </div>
+    <div class="table-responsive" *ngIf="billExports?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="quanlyWareHouseApp.billExport.date">Date</span></th>
+            <th scope="col" ><span jhiTranslate="quanlyWareHouseApp.billExport.priceTotal">Price Total</span></th>
+            <th scope="col" ><span jhiTranslate="quanlyWareHouseApp.billExport.amount">Amount</span></th>
+            <th scope="col" ><span jhiTranslate="quanlyWareHouseApp.billExport.product">Product</span></th>
+            <th scope="col" ><span jhiTranslate="quanlyWareHouseApp.billExport.customer">Customer</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let billExport of billExports ;trackBy: trackId">
+                <td><a [routerLink]="['/bill-export', billExport.id, 'view' ]">{{billExport.id}}</a></td>
+                <td>{{billExport.date | date:'mediumDate'}}</td>
+                <td>{{billExport.priceTotal}}</td>
+                <td>{{billExport.amount}}</td>
+                <td>
+                    <div *ngIf="billExport.product">
+                        <a [routerLink]="['/product', billExport.product?.id, 'view' ]" >{{billExport.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="billExport.customer">
+                        <a [routerLink]="['/customer', billExport.customer?.id, 'view' ]" >{{billExport.customer?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/bill-export', billExport.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/bill-export', billExport.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(billExport)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

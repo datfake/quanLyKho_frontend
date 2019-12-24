@@ -1,0 +1,62 @@
+<h2 *ngIf="isShow">Họ Tên : {{name}}</h2>
+
+<button type="button" class="btn btn-default" (click)="onToggle()">Hiển thị (Ẩn)</button>
+
+
+<div class="radio">
+    <label>
+        <input type="radio" name="check" (click)="onChange(true)">
+        Hợp lệ
+    </label>
+
+    <label>
+        <input type="radio" name="check" (click)="onChange(false)">
+        Không hợp lệ
+    </label>
+    <h1 *ngIf="ischeck;else elseBlock">Hợp lệ</h1>
+    <ng-template #elseBlock>
+        <h1>Không hợp lệ</h1>
+    </ng-template>
+
+    <hr/>
+
+    <div class="form-group">
+        <label for="">Tuổi : </label>
+        <input type="text" class="form-control" id="" [(ngModel)]="age">
+    </div>
+
+    <h1 *ngIf="age >18;else notsmile"> Đủ tuổi</h1>
+    <ng-template #notsmile>
+        <h1>Chưa đủ tuổi</h1>
+    </ng-template>
+
+    <hr/>
+    <hr/>
+
+    
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Name</th>
+                <th>Price</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let item of products"  let f = first
+            
+            >
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+</div>
+

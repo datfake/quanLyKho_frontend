@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="detailBillExport">
+            <h2><span jhiTranslate="quanlyWareHouseApp.detailBillExport.detail.title">Detail Bill Export</span> {{detailBillExport.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="quanlyWareHouseApp.detailBillExport.amount">Amount</span></dt>
+                <dd>
+                    <span>{{detailBillExport.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="quanlyWareHouseApp.detailBillExport.billExport">Bill Export</span></dt>
+                <dd>
+                    <div *ngIf="detailBillExport.billExport">
+                        <a [routerLink]="['/bill-export', detailBillExport.billExport?.id, 'view']">{{detailBillExport.billExport?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/detail-bill-export', detailBillExport.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
